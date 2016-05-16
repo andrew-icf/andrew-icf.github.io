@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <section class="dealer"></section>
+    <section class="player"></section>
+    <div class="dealerArea1"></div>
+    <div class="dealerArea2"></div>
+    <div class="dealerTotal"></div>
+    <div class="cardArea1"></div>
+    <div class="cardArea2"></div>
+    <div class="playerTotal"></div>
+    <div class="deal"><p>Deal</p></div>
+    <div class="hit"><p>Hit</p></div>
+    <div class="stay"><p>Stay</p></div>
+    <form class="betAmount" action="index.html" method="post">
+      <label for="total">Total:</label><br>
+      <input type="button" name="total" value="500" id="total">
+      <label for="total">Bet:</label><br>
+      <input type="text" name="bet" id="betAmount" value="0">
+    </form>
+    <section id="totalAmount">
+      <section data-amount="1" class="oneDollar chips"><p>1</p></section>
+      <section data-amount="5" class="fiveDollar chips"><p>5</p></section>
+      <section data-amount="10" class="tenDollar chips"><p>10</p></section>
+      <section data-amount="25" class="twentyFiveDollar chips"><p>25</p></section>
+      <section data-amount="50" class="fiftyDollar chips"><p>50</p></section>
+    </section>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

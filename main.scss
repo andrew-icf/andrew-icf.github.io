@@ -1,0 +1,164 @@
+@import url(https://fonts.googleapis.com/css?family=Chewy);
+@import url(https://fonts.googleapis.com/css?family=Special+Elite);
+
+//               MIXIN
+
+@mixin mainButton() {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  border: 15px solid hsl(124, 93%, 6%);
+  background-color: hsl(298,33%,55%);
+  float: left;
+}
+@mixin dealer {
+  width: 150px;
+  height: 100px;
+  background-color: hsla(120, 11%, 96%, 0);
+}
+@mixin player {
+  width: 150px;
+  height: 100px;
+  background-color: hsla(120, 11%, 96%, 0);
+}
+@mixin chip {
+  width: 70px;
+  height: 70px;
+  background-color: hsl(298,33%,85%);
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+}
+
+//               BODY
+
+body {
+  background-image: url("../images/blackjacktable.png");
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+//               MAIN BUTTONS
+
+
+.deal {
+  @include mainButton;
+  margin-top: 10%;
+  margin-left: 34%;
+}
+
+.hit {
+  @include mainButton;
+  margin-top: 10%;
+}
+
+.stay {
+  @include mainButton;
+  margin-top: 10%;
+}
+.deal, .hit, .stay p {
+  font-family: 'Special Elite', cursive;
+  font-size: 2.4rem;
+}
+
+//               CARD AREA
+
+.cardArea1 {
+  @include player;
+  margin-top: 130px;
+  margin-left: 39%;
+}
+.cardArea2 {
+  @include player;
+  margin-left: 44%;
+  margin-top: -100px;
+}
+
+.dealerArea1 {
+  @include dealer;
+  margin-left: 39%;
+  margin-top: 150px;
+
+}
+.dealerArea2 {
+  @include dealer;
+  margin-left: 44%;
+  margin-top: -100px
+}
+.dealerTotal {
+  @include dealer;
+  margin-left: 55%;
+  margin-top: -140px;
+  font-family: 'Special Elite', cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: hsl(180, 94%, 79%);
+}
+.playerTotal {
+  @include dealer;
+  margin-left: 55%;
+  margin-top: -140px;
+  font-family: 'Special Elite', cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: hsl(180, 94%, 79%);
+}
+
+//               CHIP/BET AREA
+
+.oneDollar {
+  @include chip;
+  border: 10px dashed hsl(253,50%,44%);
+}
+.fiveDollar{
+  @include chip;
+  border: 10px dashed hsl(356,100%,45%);
+}
+.tenDollar{
+  @include chip;
+  border: 10px dashed hsl(144,100%,30%);
+}
+.twentyFiveDollar{
+  @include chip;
+  border: 10px dashed hsl(10,8%,29%);
+}
+.fiftyDollar{
+  @include chip;
+  border: 10px dashed hsl(40,84%,55%);
+}
+.oneDollar, .fiveDollar,.tenDollar,
+.twentyFiveDollar, .fiftyDollar p {
+  font-family: 'Chewy', cursive;
+  font-size: 25px;
+}
+label {
+  float: right;
+  font-family: "Chewy", cursive;
+  font-size: 2rem;
+  color: #fff;
+  margin-right: 150px;
+
+}
+#total {
+  background-color: #111;
+  color: #fff;
+  margin-left: 200px;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-family: "Chewy", cursive;
+  width: 220px;
+  text-align: center;
+}
+
+#betAmount {
+  background-color: #111;
+  color: #fff;
+  margin-left: 200px;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-family: "Chewy", cursive;
+  text-align: center;
+}

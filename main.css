@@ -1,0 +1,177 @@
+@import url(https://fonts.googleapis.com/css?family=Chewy);
+@import url(https://fonts.googleapis.com/css?family=Special+Elite);
+body {
+  background-image: url("../images/blackjacktable.png");
+  background-size: cover;
+  box-sizing: border-box; }
+
+.deal {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  border: 15px solid #011e03;
+  background-color: #b066b2;
+  float: left;
+  margin-top: 10%;
+  margin-left: 34%; }
+
+.hit {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  border: 15px solid #011e03;
+  background-color: #b066b2;
+  float: left;
+  margin-top: 10%; }
+
+.stay {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  border: 15px solid #011e03;
+  background-color: #b066b2;
+  float: left;
+  margin-top: 10%; }
+
+.deal, .hit, .stay p {
+  font-family: 'Special Elite', cursive;
+  font-size: 2.4rem; }
+
+.cardArea1 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-top: 130px;
+  margin-left: 39%; }
+
+.cardArea2 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 44%;
+  margin-top: -100px; }
+
+.dealerArea1 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 39%;
+  margin-top: 150px; }
+
+.dealerArea2 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 44%;
+  margin-top: -100px; }
+
+.dealerTotal {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 55%;
+  margin-top: -140px;
+  font-family: 'Special Elite', cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: #97fcfc; }
+
+.playerTotal {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 55%;
+  margin-top: -140px;
+  font-family: 'Special Elite', cursive;
+  text-align: center;
+  font-size: 3rem;
+  color: #97fcfc; }
+
+.oneDollar {
+  width: 70px;
+  height: 70px;
+  background-color: #e5cce5;
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  border: 10px dashed #5038a8; }
+
+.fiveDollar {
+  width: 70px;
+  height: 70px;
+  background-color: #e5cce5;
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  border: 10px dashed #e6000f; }
+
+.tenDollar {
+  width: 70px;
+  height: 70px;
+  background-color: #e5cce5;
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  border: 10px dashed #00993d; }
+
+.twentyFiveDollar {
+  width: 70px;
+  height: 70px;
+  background-color: #e5cce5;
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  border: 10px dashed #504644; }
+
+.fiftyDollar {
+  width: 70px;
+  height: 70px;
+  background-color: #e5cce5;
+  border-radius: 50%;
+  transform: rotateX(40deg);
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  border: 10px dashed #edac2c; }
+
+.oneDollar, .fiveDollar, .tenDollar,
+.twentyFiveDollar, .fiftyDollar p {
+  font-family: 'Chewy', cursive;
+  font-size: 25px; }
+
+label {
+  float: right;
+  font-family: "Chewy", cursive;
+  font-size: 2rem;
+  color: #fff;
+  margin-right: 150px; }
+
+#total {
+  background-color: #111;
+  color: #fff;
+  margin-left: 200px;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-family: "Chewy", cursive;
+  width: 220px;
+  text-align: center; }
+
+#betAmount {
+  background-color: #111;
+  color: #fff;
+  margin-left: 200px;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-family: "Chewy", cursive;
+  text-align: center; }
