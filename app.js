@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var deckId;
-  $.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6" ,function(data){
+  $.get("http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6" ,function(data){
     console.log(data);
     deckId = data.deck_id;
     console.log(deckId);
@@ -11,7 +11,7 @@ $(document).ready(function(){
   $(".deal").click(function(){
     var dealerCards;
     var playerCards;
-    $.get("https://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
+    $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       console.log(data);
       var card1 = data.cards[0].image;
       var card2 = data.cards[1].image;
@@ -48,7 +48,7 @@ $(document).ready(function(){
     //                    GET DEALER CARDS
 
 
-    $.get("https://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
+    $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       var dealerCard1 = data.cards[0].image;
       var dealerCard2 = data.cards[1].image;
       var dealerNum1 = data.cards[0].value;
