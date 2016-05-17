@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Chewy);
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
-
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
 //               MIXIN
 
 @mixin mainButton() {
@@ -20,7 +20,7 @@
 @mixin player {
   width: 150px;
   height: 100px;
-  background-color: hsla(120, 11%, 96%, 0.1);
+  background-color: hsla(120, 11%, 96%, 0);
 }
 @mixin chip {
   width: 70px;
@@ -29,7 +29,7 @@
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
-  margin-top: 30px;
+  margin-top: -10px;
   text-align: center;
 }
 
@@ -41,23 +41,21 @@ body {
   box-sizing: border-box;
 }
 
+
 //               MAIN BUTTONS
 
 
 .deal {
   @include mainButton;
-  margin-top: 10%;
   margin-left: 34%;
 }
 
 .hit {
   @include mainButton;
-  margin-top: 10%;
 }
 
 .stay {
   @include mainButton;
-  margin-top: 10%;
 }
 .deal, .hit, .stay p {
   font-family: 'Special Elite', cursive;
@@ -68,7 +66,7 @@ body {
 
 .cardArea1 {
   @include player;
-  margin-top: 130px;
+  margin-top: -30px;
   margin-left: 39%;
 }
 .cardArea2 {
@@ -95,7 +93,7 @@ body {
 .dealerArea1 {
   @include dealer;
   margin-left: 39%;
-  margin-top: 150px;
+  margin-top: 100px;
 
 }
 .dealerArea2 {
@@ -105,21 +103,21 @@ body {
 }
 .dealerTotal {
   @include dealer;
-  margin-left: 55%;
-  margin-top: -140px;
-  font-family: 'Special Elite', cursive;
+  margin-left: 40%;
+  margin-top: 90px;
+  font-family: 'Fredoka One', cursive;
   text-align: center;
   font-size: 3rem;
-  color: hsl(180, 94%, 79%);
+  color: hsl(18, 95%, 6%);
 }
 .playerTotal {
   @include dealer;
-  margin-left: 55%;
-  margin-top: -140px;
-  font-family: 'Special Elite', cursive;
+  margin-left: 40%;
+  margin-top: 90px;
+  font-family: 'Fredoka One', cursive;
   text-align: center;
   font-size: 3rem;
-  color: hsl(180, 94%, 79%);
+  color: hsl(18, 95%, 6%);
 }
 
 //               CHIP/BET AREA
@@ -154,14 +152,15 @@ label {
   font-family: "Chewy", cursive;
   font-size: 2rem;
   color: #fff;
-  margin-right: 150px;
+  margin-right: 300px;
+  margin-top: -10px;
 
 }
 #total {
   background-color: #111;
   color: #fff;
   margin-left: 200px;
-  margin-top: 10px;
+  margin-top: -20px;
   font-size: 1.4rem;
   font-family: "Chewy", cursive;
   width: 220px;
