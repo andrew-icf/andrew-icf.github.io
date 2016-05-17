@@ -7,10 +7,9 @@ $(document).ready(function(){
   });
 
   //                    GET PLAYER CARDS
-
+  var dealerCards;
+  var playerCards;
   $(".deal").click(function(){
-    var dealerCards;
-    var playerCards;
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       console.log(data);
       var card1 = data.cards[0].image;
@@ -38,7 +37,7 @@ $(document).ready(function(){
       if (playerCard2 === "ACE") {
         playerCard2 = 11;
       }
-      var playerCards = parseInt(playerCard1) + parseInt(playerCard2);
+      playerCards = parseInt(playerCard1) + parseInt(playerCard2);
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       $(".cardArea1").html("<img src=" + card1 + " width=130>" );
       $(".cardArea2").html("<img src=" + card2 + " width=130>" );
@@ -74,7 +73,7 @@ $(document).ready(function(){
       if (dealerNum2 === "ACE") {
         dealerNum2 = 11;
       }
-      var dealerCards = parseInt(dealerNum1) + parseInt(dealerNum2);
+      dealerCards = parseInt(dealerNum1) + parseInt(dealerNum2);
       $(".dealerTotal").html("<p>" + dealerCards + "</p>");
       $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" ); $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
     });
@@ -84,7 +83,80 @@ $(document).ready(function(){
     //   alert("WINNER WINNER CHICKEN CHICKEN DINNER!!!");
     // }
   });
+var cards = 0;
+var hitCard1;
+var hitCard2;
+var hitCard3;
+var hitVal1;
+var hitVal2;
+var hitVal3;
+  $(".hit").on("click", function(){
+    if(cards === 0){
+  $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+    hitCard1 = data.cards[0].image;
+    hitVal1 = data.cards[0].value;
+    if (hitVal1 === "KING") {
+      hitVal1 = 10;
+    } else if (hitVal1 === "QUEEN") {
+       hitVal1 = 10;
+    } else if (hitVal1 === "JACK") {
+      hitVal1 = 10;
+    }
+    if (hitVal1 === "ACE") {
+      hitVal1 = 11;
+    }
+    $(".cardArea3").html("<img src=" + hitCard1 + " width=130>" );
+    cards += 1;
+    var pcard1 = playerCards + parseInt(hitVal1);
+    $(".playerTotal").html("<p>" + pcard1 + "</p>");
+    console.log(hitVal1);
+    });
+  }else if (cards === 1) {
+    $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+      hitCard2 = data.cards[0].image;
+      hitVal2 = data.cards[0].value;
+      if (hitVal2 === "KING") {
+        hitVal2 = 10;
+      } else if (hitVal2 === "QUEEN") {
+         hitVal2 = 10;
+      } else if (hitVal2 === "JACK") {
+        hitVal2 = 10;
+      }
+      if (hitVal2 === "ACE") {
+        hitVal2 = 11;
+      }
+      $(".cardArea4").html("<img src=" + hitCard2 + " width=130>" );
+      cards += 1;
+      var pcard2 = playerCards + parseInt(hitVal1) + parseInt(hitVal2);
+      $(".playerTotal").html("<p>" + pcard2 + "</p>");
+      console.log(playerCards);
+      console.log(hitVal2);
+      });
+  }else if (cards === 2) {
+    $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+      hitCard3 = data.cards[0].image;
+      hitVal3 = data.cards[0].value;
+      if (hitVal3 === "KING") {
+        hitVal3 = 10;
+      } else if (hitVal3 === "QUEEN") {
+         hitVal3 = 10;
+      } else if (hitVal3 === "JACK") {
+        hitVal3 = 10;
+      }
+      if (hitVal3 === "ACE") {
+        hitVal3 = 11;
+      }
+      $(".cardArea5").html("<img src=" + hitCard3 + " width=130>" );
+      cards += 1;
+      var pcard3 = playerCards + parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
+      $(".playerTotal").html("<p>" + pcard3 + "</p>");
+      console.log(hitVal3);
+      });
+  };
 
+
+
+});
 
   //                    ADD CHIPS
 
