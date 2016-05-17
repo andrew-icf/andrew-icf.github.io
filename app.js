@@ -86,6 +86,13 @@ $(document).ready(function(){
   });
 
 
+$(".hit").click(function(){
+$.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+  
+
+  });
+});
+
   //                    ADD CHIPS
 
   var num1 = 0;

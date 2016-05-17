@@ -20,7 +20,7 @@
 @mixin player {
   width: 150px;
   height: 100px;
-  background-color: hsla(120, 11%, 96%, 0);
+  background-color: hsla(120, 11%, 96%, 0.5);
 }
 @mixin chip {
   width: 70px;
@@ -74,6 +74,21 @@ body {
 .cardArea2 {
   @include player;
   margin-left: 44%;
+  margin-top: -100px;
+}
+.cardArea3 {
+  @include player;
+  margin-left: 49%;
+  margin-top: -100px;
+}
+.cardArea4 {
+  @include player;
+  margin-left: 54%;
+  margin-top: -100px;
+}
+.cardArea5 {
+  @include player;
+  margin-left: 59%;
   margin-top: -100px;
 }
 
