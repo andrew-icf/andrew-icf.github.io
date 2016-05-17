@@ -9,7 +9,7 @@ $(document).ready(function(){
   //                    GET PLAYER CARDS
   var dealerCards;
   var playerCards;
-  $(".deal").click(function(){
+  $(".deal").click(function(event){
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       console.log(data);
       var card1 = data.cards[0].image;
@@ -41,11 +41,12 @@ $(document).ready(function(){
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       $(".cardArea1").html("<img src=" + card1 + " width=130>" );
       $(".cardArea2").html("<img src=" + card2 + " width=130>" );
-
+      if (playerCards === 21) {
+        alert("WINNER WINNER CHICKEN DINNER!!!");
+      }
     });
 
     //                    GET DEALER CARDS
-
 
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       var dealerCard1 = data.cards[0].image;
@@ -75,14 +76,16 @@ $(document).ready(function(){
       }
       dealerCards = parseInt(dealerNum1) + parseInt(dealerNum2);
       $(".dealerTotal").html("<p>" + dealerCards + "</p>");
-      $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" ); $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
+      $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" );
+      $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
+      if (dealerCards === 21) {
+        alert("DEALER GOT 21... AWWW SAD PANDA");
+      }
     });
-    // if (dealerCards > playerCards) {
-    //   alert("YOU LOST YOUR ASS!!!");
-    // }else {
-    //   alert("WINNER WINNER CHICKEN CHICKEN DINNER!!!");
-    // }
   });
+
+  //                    GET PLAYER HIT CARDS
+
 var cards = 0;
 var hitCard1;
 var hitCard2;
@@ -109,7 +112,11 @@ var hitVal3;
     cards += 1;
     var pcard1 = playerCards + parseInt(hitVal1);
     $(".playerTotal").html("<p>" + pcard1 + "</p>");
-    console.log(hitVal1);
+    if (pcard1 === 21) {
+      alert("BLACKJACK!");
+    }else if (pcard1 > 21) {
+      alert("BUSTED!!!");
+    }
     });
   }else if (cards === 1) {
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -129,8 +136,12 @@ var hitVal3;
       cards += 1;
       var pcard2 = playerCards + parseInt(hitVal1) + parseInt(hitVal2);
       $(".playerTotal").html("<p>" + pcard2 + "</p>");
-      console.log(playerCards);
-      console.log(hitVal2);
+      if (pcard2 === 21) {
+        alert("BLACKJACK!");
+      }else if (pcard2 > 21) {
+        alert("BUSTED!!!");
+      }
+
       });
   }else if (cards === 2) {
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -150,12 +161,14 @@ var hitVal3;
       cards += 1;
       var pcard3 = playerCards + parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
       $(".playerTotal").html("<p>" + pcard3 + "</p>");
-      console.log(hitVal3);
-      });
+      if (pcard3 === 21) {
+        alert("BLACKJACK!");
+      }else if (pcard3 > 21) {
+        alert("BUSTED!!!");
+      }
+
+    });
   };
-
-
-
 });
 
   //                    ADD CHIPS
