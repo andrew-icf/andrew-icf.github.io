@@ -20,7 +20,7 @@
 @mixin player {
   width: 150px;
   height: 100px;
-  background-color: hsla(120, 11%, 96%, 0.5);
+  background-color: hsla(120, 11%, 96%, 0.1);
 }
 @mixin chip {
   width: 70px;

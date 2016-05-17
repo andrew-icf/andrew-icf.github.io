@@ -88,7 +88,16 @@ $(document).ready(function(){
 
 $(".hit").click(function(){
 $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
-  
+  console.log(data);
+  var hitCard1 = data.cards[0].image;
+  console.log(hitCard1);
+  $(".cardArea3").html("<img src=" + hitCard1 + " width=130>" );
+  var hitCard2 = data.cards[0].image;
+  console.log(hitCard2);
+  $(".cardArea4").html("<img src=" + hitCard2 + " width=130>" );
+  var hitCard3 = data.cards[0].image;
+  console.log(hitCard3);
+  $(".cardArea5").html("<img src=" + hitCard3 + " width=130>" );
 
   });
 });
