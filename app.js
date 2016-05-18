@@ -42,7 +42,17 @@ $(document).ready(function(){
       $(".cardArea1").html("<img src=" + card1 + " width=130>" );
       $(".cardArea2").html("<img src=" + card2 + " width=130>" );
       if (playerCards === 21) {
-        alert("WINNER WINNER CHICKEN DINNER!!!");
+        $(".alert").html("<h1>WINNER WINNER CHICKEN DINNER!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".cardArea1").empty();
+        $(".cardArea2").empty();
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }
     });
 
@@ -79,7 +89,15 @@ $(document).ready(function(){
       $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" );
       $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
       if (dealerCards === 21) {
-        alert("DEALER GOT 21... AWWW SAD PANDA");
+        $(".alert").html("<h1>DEALER GOT 21... AWWW SAD PANDA!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }
     });
   });
@@ -113,9 +131,31 @@ var hitVal3;
     var pcard1 = playerCards + parseInt(hitVal1);
     $(".playerTotal").html("<p>" + pcard1 + "</p>");
     if (pcard1 === 21) {
-      alert("BLACKJACK!");
+      $(".alert").html("<h1>BLACKJACK!!!</h1>")
+      .css("background-color", "#02410E").css("text-align", "center")
+      .css("color", "white").css("font-size", "2rem");
+      setTimeout(function () {
+      $(".cardArea1").empty();
+      $(".cardArea2").empty();
+      $(".cardArea3").empty();
+      $(".dealerArea1").empty();
+      $(".dealerArea2").empty();
+      $(".playerTotal").empty();
+      $(".dealerTotal").empty();
+      $(".alert").empty()}, 2000);
     }else if (pcard1 > 21) {
-      alert("BUSTED!!!");
+      $(".alert").html("<h1>BUSTED!!!</h1>")
+      .css("background-color", "#02410E").css("text-align", "center")
+      .css("color", "white").css("font-size", "2rem");
+      setTimeout(function () {
+      $(".cardArea1").empty();
+      $(".cardArea2").empty();
+      $(".cardArea3").empty();
+      $(".dealerArea1").empty();
+      $(".dealerArea2").empty();
+      $(".playerTotal").empty();
+      $(".dealerTotal").empty();
+      $(".alert").empty()}, 2000);
     }
     });
   }else if (cards === 1) {
@@ -137,9 +177,34 @@ var hitVal3;
       var pcard2 = playerCards + parseInt(hitVal1) + parseInt(hitVal2);
       $(".playerTotal").html("<p>" + pcard2 + "</p>");
       if (pcard2 === 21) {
-        alert("BLACKJACK!");
+        $(".alert").html("<h1>BLACKJACK!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".cardArea1").empty();
+        $(".cardArea2").empty();
+        $(".cardArea3").empty();
+        $(".cardArea4").empty();
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }else if (pcard2 > 21) {
-        alert("BUSTED!!!");
+        // alert("BUSTED!!!");
+        $(".alert").html("<h1>BUSTED!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".cardArea1").empty();
+        $(".cardArea2").empty();
+        $(".cardArea3").empty();
+        $(".cardArea4").empty();
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }
 
       });
@@ -162,9 +227,35 @@ var hitVal3;
       var pcard3 = playerCards + parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
       $(".playerTotal").html("<p>" + pcard3 + "</p>");
       if (pcard3 === 21) {
-        alert("BLACKJACK!");
+        $(".alert").html("<h1>BLACKJACK!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".cardArea1").empty();
+        $(".cardArea2").empty();
+        $(".cardArea3").empty();
+        $(".cardArea4").empty();
+        $(".cardArea5").empty();
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }else if (pcard3 > 21) {
-        alert("BUSTED!!!");
+        $(".alert").html("<h1>BUSTED!!!</h1>")
+        .css("background-color", "#02410E").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function () {
+        $(".cardArea1").empty();
+        $(".cardArea2").empty();
+        $(".cardArea3").empty();
+        $(".cardArea4").empty();
+        $(".cardArea5").empty();
+        $(".dealerArea1").empty();
+        $(".dealerArea2").empty();
+        $(".playerTotal").empty();
+        $(".dealerTotal").empty();
+        $(".alert").empty()}, 2000);
       }
 
     });
@@ -181,4 +272,7 @@ var hitVal3;
     $('#betAmount').val(sum);
 
   });
+  if (playerTotal > dealerTotal) {
+    $("#total")
+  }
 });

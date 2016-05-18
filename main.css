@@ -15,8 +15,11 @@ body {
   background-color: #b066b2;
   float: left;
   margin-left: 34%; }
+  .deal:hover {
+    background-color: #d3aad4;
+    cursor: pointer; }
 
-.hit {
+.hit, .stay {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -24,15 +27,9 @@ body {
   border: 15px solid #011e03;
   background-color: #b066b2;
   float: left; }
-
-.stay {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  text-align: center;
-  border: 15px solid #011e03;
-  background-color: #b066b2;
-  float: left; }
+  .hit:hover, .stay:hover {
+    background-color: #d3aad4;
+    cursor: pointer; }
 
 .deal, .hit, .stay p {
   font-family: 'Special Elite', cursive;
@@ -112,57 +109,72 @@ body {
 .oneDollar {
   width: 70px;
   height: 70px;
-  background-color: #e5cce5;
+  background-color: #dcbbdd;
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
   margin-top: -10px;
   text-align: center;
   border: 10px dashed #5038a8; }
+  .oneDollar:hover {
+    background-color: white;
+    cursor: pointer; }
 
 .fiveDollar {
   width: 70px;
   height: 70px;
-  background-color: #e5cce5;
+  background-color: #dcbbdd;
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
   margin-top: -10px;
   text-align: center;
   border: 10px dashed #e6000f; }
+  .fiveDollar:hover {
+    background-color: white;
+    cursor: pointer; }
 
 .tenDollar {
   width: 70px;
   height: 70px;
-  background-color: #e5cce5;
+  background-color: #dcbbdd;
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
   margin-top: -10px;
   text-align: center;
   border: 10px dashed #00993d; }
+  .tenDollar:hover {
+    background-color: white;
+    cursor: pointer; }
 
 .twentyFiveDollar {
   width: 70px;
   height: 70px;
-  background-color: #e5cce5;
+  background-color: #dcbbdd;
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
   margin-top: -10px;
   text-align: center;
   border: 10px dashed #504644; }
+  .twentyFiveDollar:hover {
+    background-color: white;
+    cursor: pointer; }
 
 .fiftyDollar {
   width: 70px;
   height: 70px;
-  background-color: #e5cce5;
+  background-color: #dcbbdd;
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
   margin-top: -10px;
   text-align: center;
   border: 10px dashed #edac2c; }
+  .fiftyDollar:hover {
+    background-color: white;
+    cursor: pointer; }
 
 .oneDollar, .fiveDollar, .tenDollar,
 .twentyFiveDollar, .fiftyDollar p {
@@ -191,7 +203,7 @@ label {
   background-color: #111;
   color: #fff;
   margin-left: 200px;
-  margin-top: 10px;
+  margin-top: -20px;
   font-size: 1.4rem;
   font-family: "Chewy", cursive;
   text-align: center; }
