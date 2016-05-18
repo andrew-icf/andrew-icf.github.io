@@ -84,6 +84,27 @@ body {
   margin-left: 44%;
   margin-top: -100px; }
 
+.dealerArea3 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 49%;
+  margin-top: -100px; }
+
+.dealerArea4 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 54%;
+  margin-top: -100px; }
+
+.dealerArea5 {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(244, 246, 244, 0);
+  margin-left: 59%;
+  margin-top: -100px; }
+
 .dealerTotal {
   width: 150px;
   height: 100px;

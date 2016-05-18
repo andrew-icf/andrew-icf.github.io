@@ -1,5 +1,7 @@
 $(document).ready(function(){
   var deckId;
+  var dealerCards;
+  var playerCards;
   $.get("http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6" ,function(data){
     console.log(data);
     deckId = data.deck_id;
@@ -7,8 +9,7 @@ $(document).ready(function(){
   });
 
   //                    GET PLAYER CARDS
-  var dealerCards;
-  var playerCards;
+
   $(".deal").click(function(event){
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=2", function(data){
       console.log(data);
@@ -42,18 +43,38 @@ $(document).ready(function(){
       $(".cardArea1").html("<img src=" + card1 + " width=130>" );
       $(".cardArea2").html("<img src=" + card2 + " width=130>" );
       if (playerCards === 21) {
-        $(".alert").html("<h1>WINNER WINNER CHICKEN DINNER!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
+        $(".alert").html("<h1>BLACKJACK!!!<h1><br><h1>WINNER WINNER CHICKEN DINNER!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
         .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".cardArea1").empty();
-        $(".cardArea2").empty();
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }
+        setTimeout(function(){
+          location.reload()}, 3000);
+
+      }else if ((playerCards < 21 && playerCards > 15 ) && (dealerCards < 21 && dealerCards >= 17)) {
+          if (playerCards > dealerCards) {
+            $("#betAmount").change(function(){
+              newTotal += $("#betAmount").val(sum);
+              $("#total").append(newTotal);
+            });
+            $(".alert").html("<br><h1>YOU WIN!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+
+          }else if(playerCards < dealerCards) {
+            $(".alert").html("<br><h1>DEALER WON...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (playerCards === dealerCards) {
+            $(".alert").html("<br><h1>PUSH</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }
+        }
     });
 
     //                    GET DEALER CARDS
@@ -89,16 +110,38 @@ $(document).ready(function(){
       $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" );
       $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
       if (dealerCards === 21) {
-        $(".alert").html("<h1>DEALER GOT 21... AWWW SAD PANDA!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
+        $(".alert").html( "<br><h1>AWWW SAD PANDA!!!</h1><br><h1>DEALER GOT 21...</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
         .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }
+        setTimeout(function(){
+          location.reload()}, 3000);
+
+      }else if ((playerCards < 21 && playerCards >= 19 ) && (dealerCards < 21 && dealerCards >= 17)) {
+          if (playerCards > dealerCards) {
+            $("#betAmount").change(function(){
+              newTotal += $("#betAmount").val(sum);
+              $("#total").append(newTotal);
+            });
+            $(".alert").html("<br><h1>YOU WIN!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+
+          }else if(playerCards < dealerCards) {
+            $(".alert").html("<br><h1>DEALER WON...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (playerCards === dealerCards) {
+            $(".alert").html("<br><h1>PUSH</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }
+        }
     });
   });
 
@@ -128,35 +171,48 @@ var hitVal3;
     }
     $(".cardArea3").html("<img src=" + hitCard1 + " width=130>" );
     cards += 1;
-    var pcard1 = playerCards + parseInt(hitVal1);
-    $(".playerTotal").html("<p>" + pcard1 + "</p>");
-    if (pcard1 === 21) {
-      $(".alert").html("<h1>BLACKJACK!!!</h1>")
-      .css("background-color", "#02410E").css("text-align", "center")
+    playerCards += parseInt(hitVal1);
+    $(".playerTotal").html("<p>" + playerCards + "</p>");
+    if (playerCards === 21) {
+      $(".alert").html("<br><br><h1>21!!!</h1>")
+      .css("background-color", "#41020d").css("text-align", "center")
       .css("color", "white").css("font-size", "2rem");
-      setTimeout(function () {
-      $(".cardArea1").empty();
-      $(".cardArea2").empty();
-      $(".cardArea3").empty();
-      $(".dealerArea1").empty();
-      $(".dealerArea2").empty();
-      $(".playerTotal").empty();
-      $(".dealerTotal").empty();
-      $(".alert").empty()}, 2000);
-    }else if (pcard1 > 21) {
-      $(".alert").html("<h1>BUSTED!!!</h1>")
-      .css("background-color", "#02410E").css("text-align", "center")
+      setTimeout(function(){
+        location.reload()}, 3000);
+
+    }else if (playerCards > 21) {
+      $(".alert").html("<br><br><h1>BUST!!!</h1>")
+      .css("background-color", "#41020d").css("text-align", "center")
       .css("color", "white").css("font-size", "2rem");
-      setTimeout(function () {
-      $(".cardArea1").empty();
-      $(".cardArea2").empty();
-      $(".cardArea3").empty();
-      $(".dealerArea1").empty();
-      $(".dealerArea2").empty();
-      $(".playerTotal").empty();
-      $(".dealerTotal").empty();
-      $(".alert").empty()}, 2000);
-    }
+      setTimeout(function(){
+        location.reload()}, 3000);
+
+    }else if ((playerCards < 21 && playerCards > 15 ) && (dealerCards < 21 && dealerCards >= 17)) {
+        if (playerCards > dealerCards) {
+          $("#betAmount").change(function(){
+            newTotal += $("#betAmount").val(sum);
+            $("#total").append(newTotal);
+          });
+          $(".alert").html("<br><h1>YOU WIN!!</h1>")
+          .css("background-color", "#41020d").css("text-align", "center")
+          .css("color", "white").css("font-size", "2rem");
+          setTimeout(function(){
+            location.reload()}, 3000);
+
+        }else if(playerCards < dealerCards) {
+          $(".alert").html("<br><h1>DEALER WON...</h1>")
+          .css("background-color", "#41020d").css("text-align", "center")
+          .css("color", "white").css("font-size", "2rem");
+          setTimeout(function(){
+            location.reload()}, 3000);
+        }else if (playerCards === dealerCards) {
+          $(".alert").html("<br><h1>PUSH</h1>")
+          .css("background-color", "#41020d").css("text-align", "center")
+          .css("color", "white").css("font-size", "2rem");
+          setTimeout(function(){
+            location.reload()}, 3000);
+        }
+      }
     });
   }else if (cards === 1) {
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -174,38 +230,48 @@ var hitVal3;
       }
       $(".cardArea4").html("<img src=" + hitCard2 + " width=130>" );
       cards += 1;
-      var pcard2 = playerCards + parseInt(hitVal1) + parseInt(hitVal2);
-      $(".playerTotal").html("<p>" + pcard2 + "</p>");
-      if (pcard2 === 21) {
-        $(".alert").html("<h1>BLACKJACK!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
+      playerCards += parseInt(hitVal1) + parseInt(hitVal2);
+      $(".playerTotal").html("<p>" + playerCards + "</p>");
+      if (playerCards === 21) {
+        $(".alert").html("<br><br><h1>21!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
         .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".cardArea1").empty();
-        $(".cardArea2").empty();
-        $(".cardArea3").empty();
-        $(".cardArea4").empty();
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }else if (pcard2 > 21) {
-        // alert("BUSTED!!!");
-        $(".alert").html("<h1>BUSTED!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
+        setTimeout(function(){
+          location.reload()}, 3000);
+
+      }else if (playerCards > 21) {
+        $(".alert").html("<br><br><h1>BUST!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
         .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".cardArea1").empty();
-        $(".cardArea2").empty();
-        $(".cardArea3").empty();
-        $(".cardArea4").empty();
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }
+        setTimeout(function(){
+          location.reload()}, 3000);
+
+      }else if ((playerCards < 21 && playerCards > 15 ) && (dealerCards < 21 && dealerCards >= 17)) {
+          if (playerCards > dealerCards) {
+            $("#betAmount").change(function(){
+              newTotal += $("#betAmount").val(sum);
+              $("#total").append(newTotal);
+            });
+            $(".alert").html("<br><h1>YOU WIN!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+
+          }else if(playerCards < dealerCards) {
+            $(".alert").html("<br><h1>DEALER WON...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (playerCards === dealerCards) {
+            $(".alert").html("<br><h1>PUSH</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }
+        }
 
       });
   }else if (cards === 2) {
@@ -224,55 +290,233 @@ var hitVal3;
       }
       $(".cardArea5").html("<img src=" + hitCard3 + " width=130>" );
       cards += 1;
-      var pcard3 = playerCards + parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
-      $(".playerTotal").html("<p>" + pcard3 + "</p>");
-      if (pcard3 === 21) {
-        $(".alert").html("<h1>BLACKJACK!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
+      playerCards += parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
+      $(".playerTotal").html("<p>" + playerCards + "</p>");
+      if (playerCards === 21) {
+        $(".alert").html("<br><br><h1>21!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
         .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".cardArea1").empty();
-        $(".cardArea2").empty();
-        $(".cardArea3").empty();
-        $(".cardArea4").empty();
-        $(".cardArea5").empty();
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }else if (pcard3 > 21) {
-        $(".alert").html("<h1>BUSTED!!!</h1>")
-        .css("background-color", "#02410E").css("text-align", "center")
-        .css("color", "white").css("font-size", "2rem");
-        setTimeout(function () {
-        $(".cardArea1").empty();
-        $(".cardArea2").empty();
-        $(".cardArea3").empty();
-        $(".cardArea4").empty();
-        $(".cardArea5").empty();
-        $(".dealerArea1").empty();
-        $(".dealerArea2").empty();
-        $(".playerTotal").empty();
-        $(".dealerTotal").empty();
-        $(".alert").empty()}, 2000);
-      }
+        setTimeout(function(){
+          location.reload()}, 3000);
 
+      }else if (playerCards > 21) {
+        $(".alert").html("<br><br><h1>BUST!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function(){
+          location.reload()}, 3000);
+
+      }else if ((playerCards < 21 && playerCards > 15 ) && (dealerCards < 21 && dealerCards >= 17)) {
+          if (playerCards > dealerCards) {
+            $("#betAmount").change(function(){
+              newTotal += $("#betAmount").val(sum);
+              $("#total").append(newTotal);
+            });
+            $(".alert").html("<br><h1>YOU WIN!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+
+          }else if(playerCards < dealerCards) {
+            $(".alert").html("<br><h1>DEALER WON...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (playerCards === dealerCards) {
+            $(".alert").html("<br><h1>PUSH</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }
+        }
     });
   };
 });
 
-  //                    ADD CHIPS
+//                    GET DEALER HIT CARDS
 
-  var num1 = 0;
-  var sum = 0;
-  $(".chips").click(function(){
-    num1 = $(this).data("amount");
-    sum += num1;
-    $('#betAmount').val(sum);
+var dealerCardTotal = 0;
+var dealerCard1;
+var dealerCard2;
+var dealerCard3;
+var dealerHit1;
+var dealerHit2;
+var dealerHit2;
+// var dcard1;
+$(".stay").on("click", function() {
+  if (dealerCardTotal === 0 && dealerCards < 17) {
+    $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+      dealerCard1 = data.cards[0].image;
+      dealerVal1 = data.cards[0].value;
+      if (dealerVal1 === "KING") {
+        dealerVal1 = 10;
+      } else if (dealerVal1 === "QUEEN") {
+         dealerVal1 = 10;
+      } else if (dealerVal1 === "JACK") {
+        dealerVal1 = 10;
+      }
+      if (dealerVal1 === "ACE") {
+        dealerVal1 = 11;
+      }
+      $(".dealerArea3").html("<img src=" + dealerCard1 + " width=130>" );
+      dealerCardTotal += 1;
+      dealerCards += parseInt(dealerVal1);
+      $(".dealerTotal").html("<p>" + dealerCards + "</p>");
+      if (dealerCards === 21) {
+        $(".alert").html("<br><h1>DEALER GOT<br><h1>21...</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function(){
+          location.reload()}, 3000);
+      }else if (dealerCards > 21) {
+        $(".alert").html("<br><br><h1>BUST!!!</h1>")
+        .css("background-color", "#41020d").css("text-align", "center")
+        .css("color", "white").css("font-size", "2rem");
+        setTimeout(function(){
+          location.reload()}, 3000);
+        }
+      if (dealerCardTotal === 1 && dealerCards < 17 ) {
+        $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+          dealerCard2 = data.cards[0].image;
+          dealerVal2 = data.cards[0].value;
+          if (dealerVal2 === "KING") {
+            dealerVal2 = 10;
+          } else if (dealerVal2 === "QUEEN") {
+             dealerVal2 = 10;
+          } else if (dealerVal2 === "JACK") {
+            dealerVal2 = 10;
+          }
+          if (dealerVal2 === "ACE") {
+            dealerVal2 = 11;
+          }
+          $(".dealerArea4").html("<img src=" + dealerCard2 + " width=130>" );
+          dealerCardTotal += 1;
+          dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2);
+          $(".dealerTotal").html("<p>" + dealerCards + "</p>");
+          if (dealerCards === 21) {
+            $(".alert").html("<br><h1>DEALER GOT<br><h1>21...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (dealerCards > 21) {
+            $(".alert").html("<br><br><h1>BUST!!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+            }
+        });
+      };
 
+      if (dealerCardTotal === 2 && dealerCards < 17 ) {
+        $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+          dealerCard3 = data.cards[0].image;
+          dealerVal3 = data.cards[0].value;
+          if (dealerVal3 === "KING") {
+            dealerVal3 = 10;
+          } else if (dealerVal3 === "QUEEN") {
+             dealerVal3 = 10;
+          } else if (dealerVal3 === "JACK") {
+            dealerVal3 = 10;
+          }
+          if (dealerVal3 === "ACE") {
+            dealerVal3 = 11;
+          }
+          $(".dealerArea5").html("<img src=" + dealerCard3 + " width=130>" );
+          dealerCardTotal += 1;
+          dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2) + parseInt(dealerVal3);
+          $(".dealerTotal").html("<p>" + dealerCards + "</p>");
+          if (dealerCards === 21) {
+            $(".alert").html("<br><h1>DEALER GOT<br><h1>21...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (dealerCards > 21) {
+            $(".alert").html("<br><br><h1>BUST!!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+            }
+        });
+      };
+      if ((playerCards < 21 && playerCards > 13 ) && (dealerCards < 21 && dealerCards >= 17)) {
+          if (playerCards > dealerCards) {
+            $("#betAmount").change(function(){
+              newTotal += $("#betAmount").val(sum);
+              $("#total").append(newTotal);
+            });
+            $(".alert").html("<br><h1>YOU WIN!!</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+
+          }else if(playerCards < dealerCards) {
+            $(".alert").html("<br><h1>DEALER WON...</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }else if (playerCards === dealerCards) {
+            $(".alert").html("<br><h1>PUSH</h1>")
+            .css("background-color", "#41020d").css("text-align", "center")
+            .css("color", "white").css("font-size", "2rem");
+            setTimeout(function(){
+              location.reload()}, 3000);
+          }
+        }
+    });
+  };
+
+});
+  //                    TAKE BET
+
+var betAmount = 0;
+var total = 500;
+
+function renderBetAmount(){
+  $('#betAmount').val(betAmount);
+}
+function renderTotalAmount(){
+  $("#total").val(total);
+}
+function changeTotal(amount){
+  total += amount;
+  renderTotalAmount();
+}
+
+$(".chips").click(function(){
+    betAmount += $(this).data("amount");
+    renderBetAmount();
   });
-  if (playerTotal > dealerTotal) {
-    $("#total")
-  }
+if (playerCards > dealerCards) {
+  changeTotal(betAmount);
+  betAmount = 0;
+  renderBetAmount();
+}else if (playerCards < dealerCards) {
+  changeTotal(-betAmount);
+  betAmount = 0;
+  renderBetAmount();
+}else if (playerCards === dealerCards) {
+  renderTotalAmount();
+  betAmount = 0;
+}
+// $(".win").click(function(){
+//   changeTotal(betAmount);
+//   betAmount = 0;
+//   renderBetAmount();
+// });
+//
+// $(".lose").click(function(){
+//   changeTotal(-betAmount);
+//   betAmount = 0;
+//   renderBetAmount();
+//   });
+
 });
