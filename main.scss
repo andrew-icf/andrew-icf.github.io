@@ -10,7 +10,12 @@
   text-align: center;
   border: 15px solid hsl(124, 93%, 6%);
   background-color: hsl(298,33%,55%);
+  &:hover{
+    background-color: hsl(298,33%,75%);
+    cursor: pointer;
+  }
   float: left;
+
 }
 @mixin dealer {
   width: 150px;
@@ -25,7 +30,11 @@
 @mixin chip {
   width: 70px;
   height: 70px;
-  background-color: hsl(298,33%,85%);
+  background-color: hsl(298,33%,80%);
+  &:hover {
+    background-color: hsl(298,33%,100%);
+    cursor: pointer;
+  }
   border-radius: 50%;
   transform: rotateX(40deg);
   float: right;
@@ -50,13 +59,10 @@ body {
   margin-left: 34%;
 }
 
-.hit {
+.hit, .stay {
   @include mainButton;
 }
 
-.stay {
-  @include mainButton;
-}
 .deal, .hit, .stay p {
   font-family: 'Special Elite', cursive;
   font-size: 2.4rem;
@@ -171,7 +177,7 @@ label {
   background-color: #111;
   color: #fff;
   margin-left: 200px;
-  margin-top: 10px;
+  margin-top: -20px;
   font-size: 1.4rem;
   font-family: "Chewy", cursive;
   text-align: center;
