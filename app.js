@@ -38,12 +38,9 @@ $(document).ready(function(){
   function alertUser(words){
     $(".alert").html(words)
     .css("background-color", "#41020d").css("text-align", "center")
-    .css("color", "white").css("font-size", "2rem").show().fadeOut(1500);
+    .css("color", "white").css("font-size", "2rem").show().fadeOut(2000);
   }
-  // function render(){
-  //
-  //
-  // }
+
   function reload(){
     setTimeout(function(){$(".dealerArea1").empty();
     $(".dealerArea2").empty();
@@ -128,7 +125,7 @@ $(document).ready(function(){
   });
 
   //                    DEAL CARDS
-  function deal(){
+
   $(".deal").click(function(event){
 
     //                    GET DEALER CARDS
@@ -194,9 +191,9 @@ $(document).ready(function(){
       });
     });
   });
-}
-deal();
+
   //                    GET PLAYER HIT CARDS
+
   $(".hit").on("click", function(){
     if(cards === 0){
   $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -215,15 +212,7 @@ deal();
     }else if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
         if (playerCards > dealerCards) {
           youWin();
-        }
-        // else if(playerCards < dealerCards) {
-        //   changeTotal(-betAmount);
-        //   betAmount = 0;
-        //   renderBetAmount();
-        //   alertUser("<br><h1>DEALER WON...</h1>")
-        //   reload();
-        // }
-        else if (playerCards === dealerCards) {
+        }else if (playerCards === dealerCards) {
           push();
         }
       }
@@ -276,7 +265,7 @@ deal();
 });
 
 //                    GET DEALER HIT CARDS
-// function stay(){
+
 var dealerCardTotal = 0;
 var dealerCard1;
 var dealerCard2;
@@ -393,6 +382,4 @@ $(".stay").on("click", function() {
       });
     };
   });
-// }
-// stay();
 });
