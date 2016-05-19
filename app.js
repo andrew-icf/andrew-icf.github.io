@@ -31,8 +31,6 @@ $(document).ready(function(){
       return  10;
     }else if (cardName === "ACE") {
       return 11;
-    }else if ((cardName === "ACE") && (dealerCards > 11) && (playerCards > 11)) {
-      return 1;
     }else {
       return cardName;
     }
@@ -40,15 +38,33 @@ $(document).ready(function(){
   function alertUser(words){
     $(".alert").html(words)
     .css("background-color", "#41020d").css("text-align", "center")
-    .css("color", "white").css("font-size", "2rem").delay(1000).fadeOut(1000);
+    .css("color", "white").css("font-size", "2rem").show().fadeOut(1500);
   }
+  // function render(){
+  //
+  //
+  // }
   function reload(){
-    setTimeout(function(){
-      location.reload()}, 2000);
+    setTimeout(function(){$(".dealerArea1").empty();
+    $(".dealerArea2").empty();
+    $(".dealerArea3").empty();
+    $(".dealerArea4").empty();
+    $(".dealerArea5").empty();
+    $(".dealerTotal").empty();
+    $(".cardArea1").empty();
+    $(".cardArea2").empty();
+    $(".cardArea3").empty();
+    $(".cardArea4").empty();
+    $(".cardArea5").empty();
+    $(".playerTotal").empty();
+    cards = 0;
+    dealerCardTotal = 0;}, 2000)
+
   }
   function push(){
-    renderTotalAmount();
     betAmount = 0;
+    renderTotalAmount();
+    renderBetAmount();
     alertUser("<br><h1>PUSH</h1>")
     reload();
   }
@@ -95,10 +111,16 @@ $(document).ready(function(){
     reload();
   }
   $(".chips").click(function(){
-      betAmount += $(this).data("amount");
+      var amount = $(this).data("amount");
+      if (total < betAmount + amount) {
+        alertUser("You have no more money!")
+        return;
+      }
+      betAmount += amount;
       renderBetAmount();
     });
     renderTotalAmount();
+
   $.get("http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6" ,function(data){
     console.log(data);
     deckId = data.deck_id;
@@ -106,7 +128,7 @@ $(document).ready(function(){
   });
 
   //                    DEAL CARDS
-
+  function deal(){
   $(".deal").click(function(event){
 
     //                    GET DEALER CARDS
@@ -172,9 +194,9 @@ $(document).ready(function(){
       });
     });
   });
-
+}
+deal();
   //                    GET PLAYER HIT CARDS
-
   $(".hit").on("click", function(){
     if(cards === 0){
   $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -212,7 +234,7 @@ $(document).ready(function(){
       hitVal2 = getCardPoints(data.cards[0].value);
       $(".cardArea4").html("<img src=" + hitCard2 + " width=130>" );
       cards += 1;
-      playerCards += parseInt(hitVal1) + parseInt(hitVal2);
+      playerCards += parseInt(hitVal2);
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       if (playerCards === 21) {
         youGot21();
@@ -234,7 +256,7 @@ $(document).ready(function(){
       hitVal3 = getCardPoints(data.cards[0].value);
       $(".cardArea5").html("<img src=" + hitCard3 + " width=130>" );
       cards += 1;
-      playerCards += parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
+      playerCards += parseInt(hitVal3);
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       if (playerCards === 21) {
         youGot21();
@@ -254,7 +276,7 @@ $(document).ready(function(){
 });
 
 //                    GET DEALER HIT CARDS
-
+// function stay(){
 var dealerCardTotal = 0;
 var dealerCard1;
 var dealerCard2;
@@ -262,7 +284,6 @@ var dealerCard3;
 var dealerHit1;
 var dealerHit2;
 var dealerHit2;
-// var dcard1;
 $(".stay").on("click", function() {
   if (dealerCardTotal === 0 && dealerCards < 17) {
     $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
@@ -297,76 +318,81 @@ $(".stay").on("click", function() {
             push();
           }
         }
-      if (dealerCardTotal === 1 && dealerCards < 17 ) {
-        $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
-          dealerCard2 = data.cards[0].image;
-          dealerVal2 = getCardPoints(data.cards[0].value);
-          $(".dealerArea4").html("<img src=" + dealerCard2 + " width=130>" );
-          dealerCardTotal += 1;
-          dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2);
-          $(".dealerTotal").html("<p>" + dealerCards + "</p>");
-          if (dealerCards === 21) {
-            dealerGot21();
-          }else if (dealerCards > 21) {
-            dealerBust();
-          }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
-            push();
-          }
-          if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
-              if (playerCards > dealerCards) {
-                youWin();
-              }else if (playerCards === dealerCards) {
-                push();
-              }
-            }
-          if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
-              if (playerCards > dealerCards) {
-                youWin();
-              }else if(playerCards < dealerCards) {
-                dealerWon();
-              }else if (playerCards === dealerCards) {
-                push();
-              }
-            }
-        });
-      };
-        if (dealerCardTotal === 2 && dealerCards < 17 ) {
+        if (dealerCardTotal === 1 && dealerCards < 17 ) {
           $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
-            dealerCard3 = data.cards[0].image;
-            dealerVal3 = getCardPoints(data.cards[0].value);
-
-            $(".dealerArea5").html("<img src=" + dealerCard3 + " width=130>" );
+            dealerCard2 = data.cards[0].image;
+            dealerVal2 = getCardPoints(data.cards[0].value);
+            $(".dealerArea4").html("<img src=" + dealerCard2 + " width=130>" );
             dealerCardTotal += 1;
-            dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2) + parseInt(dealerVal3);
+            dealerCards += parseInt(dealerVal2);
             $(".dealerTotal").html("<p>" + dealerCards + "</p>");
             if (dealerCards === 21) {
               dealerGot21();
+              return;
             }else if (dealerCards > 21) {
               dealerBust();
             }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
               push();
+              return;
             }
-          if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
-              if (playerCards > dealerCards) {
-                youWin();
-              }else if(playerCards < dealerCards) {
-                dealerWon();
-              }else if (playerCards === dealerCards) {
-                push();
+            if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
+                if (playerCards > dealerCards) {
+                  youWin();
+                }else if (playerCards === dealerCards) {
+                  push();
+                  return;
+                }
               }
-            }
-          if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
-              if (playerCards > dealerCards) {
-                youWin();
-              }else if(playerCards < dealerCards) {
-                dealerWon();
-              }else if (playerCards === dealerCards) {
-                push();
+            if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
+                if (playerCards > dealerCards) {
+                  youWin();
+                }else if(playerCards < dealerCards) {
+                  dealerWon();
+                }else if (playerCards === dealerCards) {
+                  push();
+                }
               }
-            }
+            if (dealerCardTotal === 2 && dealerCards < 17 ) {
+              $.get("http://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1", function(data){
+                dealerCard3 = data.cards[0].image;
+                dealerVal3 = getCardPoints(data.cards[0].value);
+
+                $(".dealerArea5").html("<img src=" + dealerCard3 + " width=130>" );
+                dealerCardTotal += 1;
+                dealerCards += parseInt(dealerVal3);
+                $(".dealerTotal").html("<p>" + dealerCards + "</p>");
+                if (dealerCards === 21) {
+                  dealerGot21();
+                }else if (dealerCards > 21) {
+                  dealerBust();
+                }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
+                  push();
+                }
+              if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
+                  if (playerCards > dealerCards) {
+                    youWin();
+                  }else if(playerCards < dealerCards) {
+                    dealerWon();
+                  }else if (playerCards === dealerCards) {
+                    push();
+                  }
+                }
+              if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
+                  if (playerCards > dealerCards) {
+                    youWin();
+                  }else if(playerCards < dealerCards) {
+                    dealerWon();
+                  }else if (playerCards === dealerCards) {
+                    push();
+                  }
+                }
+              });
+            };
           });
         };
       });
     };
   });
+// }
+// stay();
 });
