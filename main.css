@@ -6,6 +6,26 @@ body {
   background-size: cover;
   box-sizing: border-box; }
 
+.rules {
+  background-color: #14170c;
+  color: white;
+  width: 270px;
+  height: 325px;
+  margin-top: 200px;
+  border: 7px solid #2f00d6; }
+  .rules li {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2rem; }
+  .rules h2 {
+    border-bottom: 4px solid #2f00d6;
+    padding-bottom: 15px; }
+
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0; }
+
 .deal {
   width: 120px;
   height: 120px;
@@ -75,7 +95,7 @@ body {
   height: 100px;
   background-color: rgba(244, 246, 244, 0);
   margin-left: 39%;
-  margin-top: 100px; }
+  margin-top: -500px; }
 
 .dealerArea2 {
   width: 150px;

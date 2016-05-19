@@ -50,6 +50,28 @@ body {
   box-sizing: border-box;
 }
 
+.rules {
+  background-color: rgb(20, 23, 12);
+  color: white;
+  width: 270px;
+  height: 325px;
+  margin-top: 200px;
+  border: 7px solid rgb(47, 0, 214);
+  li {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2rem;
+  }
+  h2 {
+    border-bottom: 4px solid rgb(47, 0, 214);
+    padding-bottom: 15px;
+  }
+}
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
 //               MAIN BUTTONS
 
@@ -99,7 +121,7 @@ body {
 .dealerArea1 {
   @include dealer;
   margin-left: 39%;
-  margin-top: 100px;
+  margin-top: -500px;
 
 }
 .dealerArea2 {
