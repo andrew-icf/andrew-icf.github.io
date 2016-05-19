@@ -44,12 +44,54 @@ $(document).ready(function(){
   }
   function reload(){
     setTimeout(function(){
-      location.reload()}, 3000);
+      location.reload()}, 2000);
   }
   function push(){
     renderTotalAmount();
     betAmount = 0;
     alertUser("<br><h1>PUSH</h1>")
+    reload();
+  }
+  function dealerWon(){
+    changeTotal(-betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><h1>DEALER WON...</h1>")
+    reload();
+  }
+  function youWin(){
+    changeTotal(betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><h1>YOU WIN!!</h1>")
+    reload();
+  }
+  function dealerBust(){
+    changeTotal(betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><h1>DEALER</h1><br><h1>BUST!!!</h1>")
+    reload();
+  }
+  function dealerGot21(){
+    changeTotal(-betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><h1>DEALER GOT<br><h1>21...</h1>")
+    reload();
+  }
+  function youBust(){
+    changeTotal(-betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><br><h1>BUST!!!</h1>")
+    reload();
+  }
+  function youGot21(){
+    changeTotal(betAmount);
+    betAmount = 0;
+    renderBetAmount();
+    alertUser("<br><br><h1>21!!!</h1>")
     reload();
   }
   $(".chips").click(function(){
@@ -88,17 +130,9 @@ $(document).ready(function(){
       }
       else if ((playerCards < 21 && playerCards >= 19 ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
+            youWin();
           }else if(playerCards < dealerCards) {
-            changeTotal(-betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER WON...</h1>")
-            reload();
+            dealerWon();
           }else if (playerCards === dealerCards) {
             push();
           }
@@ -123,26 +157,14 @@ $(document).ready(function(){
         alertUser("<br><h1>BLACKJACK!!!<h1><br><h1>WINNER WINNER CHICKEN DINNER!!!</h1>")
         reload();
       }else if (playerCards > 21) {
-        changeTotal(-betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><br><h1>BUST!!!</h1>")
-        reload();
+        youBust();
       }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
         push();
       }else if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
+            youWin();
           }else if(playerCards < dealerCards) {
-            changeTotal(-betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER WON...</h1>")
-            reload();
+            dealerWon();
           }else if (playerCards === dealerCards) {
             push();
           }
@@ -163,26 +185,14 @@ $(document).ready(function(){
     playerCards += parseInt(hitVal1);
     $(".playerTotal").html("<p>" + playerCards + "</p>");
     if (playerCards === 21) {
-      changeTotal(betAmount);
-      betAmount = 0;
-      renderBetAmount();
-      alertUser("<br><br><h1>21!!!</h1>")
-      reload();
+      youGot21();
     }else if (playerCards > 21) {
-      changeTotal(-betAmount);
-      betAmount = 0;
-      renderBetAmount();
-      alertUser("<br><br><h1>BUST!!!</h1>")
-      reload();
+      youBust();
     }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
       push();
     }else if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
         if (playerCards > dealerCards) {
-          changeTotal(betAmount);
-          betAmount = 0;
-          renderBetAmount();
-          alertUser("<br><h1>YOU WIN!!</h1>")
-          reload();
+          youWin();
         }
         // else if(playerCards < dealerCards) {
         //   changeTotal(-betAmount);
@@ -205,35 +215,15 @@ $(document).ready(function(){
       playerCards += parseInt(hitVal1) + parseInt(hitVal2);
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       if (playerCards === 21) {
-        changeTotal(betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><br><h1>21!!!</h1>")
-        reload();
+        youGot21();
       }else if (playerCards > 21) {
-        changeTotal(-betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><br><h1>BUST!!!</h1>")
-        reload();
+        youBust();
       }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
         push();
       }else if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
-          }
-          // else if(playerCards < dealerCards) {
-          //   changeTotal(-betAmount);
-          //   betAmount = 0;
-          //   renderBetAmount();
-          //   alertUser("<br><h1>DEALER WON...</h1>")
-          //   reload();
-          // }
-          else if (playerCards === dealerCards) {
+            youWin();
+          }else if (playerCards === dealerCards) {
             push();
           }
         }
@@ -247,35 +237,15 @@ $(document).ready(function(){
       playerCards += parseInt(hitVal1) + parseInt(hitVal2) + parseInt(hitVal3);
       $(".playerTotal").html("<p>" + playerCards + "</p>");
       if (playerCards === 21) {
-        changeTotal(betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><br><h1>21!!!</h1>")
-        reload();
+        youGot21();
       }else if (playerCards > 21) {
-        changeTotal(-betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><br><h1>BUST!!!</h1>")
-        reload();
+        youBust();
       }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
         push();
       }else if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
-          }
-          // else if(playerCards < dealerCards) {
-          //   changeTotal(-betAmount);
-          //   betAmount = 0;
-          //   renderBetAmount();
-          //   alertUser("<br><h1>DEALER WON...</h1>")
-          //   reload();
-          // }
-          else if (playerCards === dealerCards) {
+            youWin();
+          }else if (playerCards === dealerCards) {
             push();
           }
         }
@@ -303,50 +273,26 @@ $(".stay").on("click", function() {
       dealerCards += parseInt(dealerVal1);
       $(".dealerTotal").html("<p>" + dealerCards + "</p>");
       if (dealerCards === 21) {
-        changeTotal(-betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><h1>DEALER GOT<br><h1>21...</h1>")
-        reload();
+        dealerGot21();
       }else if (dealerCards > 21) {
-        changeTotal(betAmount);
-        betAmount = 0;
-        renderBetAmount();
-        alertUser("<br><h1>DEALER</h1><br><h1>BUST!!!</h1>")
-        reload();
+        dealerBust();
       }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
         push();
       }
       if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
+            youWin();
           }else if(playerCards < dealerCards) {
-            changeTotal(-betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER WON...</h1>")
-            reload();
+            dealerWon();
           }else if (playerCards === dealerCards) {
             push();
           }
         }
       if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
           if (playerCards > dealerCards) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>YOU WIN!!</h1>")
-            reload();
+            youWin();
           }else if(playerCards < dealerCards) {
-            changeTotal(-betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER WON...</h1>")
-            reload();
+            dealerWon();
           }else if (playerCards === dealerCards) {
             push();
           }
@@ -360,52 +306,24 @@ $(".stay").on("click", function() {
           dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2);
           $(".dealerTotal").html("<p>" + dealerCards + "</p>");
           if (dealerCards === 21) {
-            changeTotal(-betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER GOT<br><h1>21...</h1>")
-            reload();
+            dealerGot21();
           }else if (dealerCards > 21) {
-            changeTotal(betAmount);
-            betAmount = 0;
-            renderBetAmount();
-            alertUser("<br><h1>DEALER</h1><br><h1>BUST!!!</h1>")
-            reload();
+            dealerBust();
           }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
             push();
           }
           if ((playerCards > dealerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
               if (playerCards > dealerCards) {
-                changeTotal(betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>YOU WIN!!</h1>")
-                reload();
-              }
-              // else if(playerCards < dealerCards) {
-              //   changeTotal(-betAmount);
-              //   betAmount = 0;
-              //   renderBetAmount();
-              //   alertUser("<br><h1>DEALER WON...</h1>")
-              //   reload();
-              // }
-              else if (playerCards === dealerCards) {
+                youWin();
+              }else if (playerCards === dealerCards) {
                 push();
               }
             }
           if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
               if (playerCards > dealerCards) {
-                changeTotal(betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>YOU WIN!!</h1>")
-                reload();
+                youWin();
               }else if(playerCards < dealerCards) {
-                changeTotal(-betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>DEALER WON...</h1>")
-                reload();
+                dealerWon();
               }else if (playerCards === dealerCards) {
                 push();
               }
@@ -422,50 +340,26 @@ $(".stay").on("click", function() {
             dealerCards += parseInt(dealerVal1) + parseInt(dealerVal2) + parseInt(dealerVal3);
             $(".dealerTotal").html("<p>" + dealerCards + "</p>");
             if (dealerCards === 21) {
-              changeTotal(-betAmount);
-              betAmount = 0;
-              renderBetAmount();
-              alertUser("<br><h1>DEALER GOT<br><h1>21...</h1>")
-              reload();
+              dealerGot21();
             }else if (dealerCards > 21) {
-              changeTotal(betAmount);
-              betAmount = 0;
-              renderBetAmount();
-              alertUser("<br><h1>DEALER</h1><br><h1>BUST!!!</h1>")
-              reload();
+              dealerBust();
             }else if ((playerCards === dealerCards) && (dealerCards >= 17)) {
               push();
             }
           if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
               if (playerCards > dealerCards) {
-                changeTotal(betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>YOU WIN!!</h1>")
-                reload();
+                youWin();
               }else if(playerCards < dealerCards) {
-                changeTotal(-betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>DEALER WON...</h1>")
-                reload();
+                dealerWon();
               }else if (playerCards === dealerCards) {
                 push();
               }
             }
           if ((dealerCards > playerCards ) && (dealerCards < 21 && dealerCards >= 17)) {
               if (playerCards > dealerCards) {
-                changeTotal(betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>YOU WIN!!</h1>")
-                reload();
+                youWin();
               }else if(playerCards < dealerCards) {
-                changeTotal(-betAmount);
-                betAmount = 0;
-                renderBetAmount();
-                alertUser("<br><h1>DEALER WON...</h1>")
-                reload();
+                dealerWon();
               }else if (playerCards === dealerCards) {
                 push();
               }
