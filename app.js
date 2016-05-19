@@ -38,7 +38,7 @@ $(document).ready(function(){
   function alertUser(words){
     $(".alert").html(words)
     .css("background-color", "#41020d").css("text-align", "center")
-    .css("color", "white").css("font-size", "2rem").show().fadeOut(2000);
+    .css("color", "white").css("font-size", "2rem").show().fadeOut(2500);
   }
 
   function reload(){
@@ -55,8 +55,10 @@ $(document).ready(function(){
     $(".cardArea5").empty();
     $(".playerTotal").empty();
     cards = 0;
-    dealerCardTotal = 0;}, 2000)
-
+    dealerCardTotal = 0;}, 2000);
+    if (total === 0) {
+      alertUser("<br><h1>You lost your ass!!!</h1><br><h1>Please enter your credit info or refresh page</h1>");
+    }
   }
   function push(){
     betAmount = 0;
@@ -110,7 +112,7 @@ $(document).ready(function(){
   $(".chips").click(function(){
       var amount = $(this).data("amount");
       if (total < betAmount + amount) {
-        alertUser("You have no more money!")
+        alertUser("<br><h1>You have no more money!</h1>")
         return;
       }
       betAmount += amount;
