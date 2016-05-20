@@ -140,7 +140,7 @@ $(document).ready(function(){
 
       dealerCards = parseInt(dealerNum1) + parseInt(dealerNum2);
       $(".dealerTotal").html("<p>" + dealerCards + "</p>");
-      $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130>" );
+      $(".dealerArea1").html("<img src=" + dealerCard1 + " width=130 background-color: rgba(0,0,0,.5)>" );
       $(".dealerArea2").html("<img src=" + dealerCard2 + " width=130>" );
       if (dealerCards === 21) {
         changeTotal(-betAmount);
