@@ -1,4 +1,5 @@
 # Galvanize Individual Project Proposal
+[Go to play Blackjack Here!!!](http://andrew-icf.github.io/)
 
 ![Blackjack](/images/complete.png?raw=true "Blackjack")
 
