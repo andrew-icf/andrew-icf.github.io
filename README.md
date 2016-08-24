@@ -1,7 +1,10 @@
 # Galvanize Individual Project Proposal
 
+![Blackjack](/images/complete.png?raw=true "Blackjack")
+
+
 ## Project Description
-I want to make a blackjack game. I feel like it can be a good platform to utilize all of the stuff I have learned.
+I am making a blackjack game. I feel like it can be a good platform to utilize all of the skills I have learned so far.
 
 ## Who uses it?
 Someone that can see the screen and push buttons on the screen
